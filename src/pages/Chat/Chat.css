@@ -1,0 +1,168 @@
+body{
+    height: 70vh;
+}
+.respondBG{
+    background-color: rgb(213, 180, 198);
+    max-width: 300px;
+    border-radius: 30px 30px 30px 0px ;
+    margin-top: 5%;
+    margin-left : 2%;
+    
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
+
+.sendBG, .respondBG {
+  font-family: 'Schoolbell', cursive;
+}
+
+
+.respondBG h2 {
+    margin-left: 20px ;
+    padding-top: 20px;
+
+}
+.respondBG div {
+    padding: 10px;
+}
+
+.sendBG{
+    background-color: #c13f5f;
+    max-width: 300px;
+    border-radius: 30px 30px 0px 30px ;
+    margin-top: 5%;
+    margin-left: auto; /* Align to the right */
+    margin-right: 2%; /* Reset margin-right to 0 */
+    color: white;
+}
+
+.flex-in {
+  display: flex;
+}
+.flex-in h4 {
+  color: #c13f5f;
+}
+
+
+.sendBG h2 {
+    margin-left: 20px ;
+    padding-top: 20px;
+}
+.sendBG div {
+    padding: 10px;
+}
+
+.textArea {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 0%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-content: center;
+    height: 10%;
+    max-height: 80px;
+  }
+
+
+  .textArea form {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .textArea label {
+    flex: 1;
+    
+  }
+  
+  .textArea input {
+    flex: 1;
+    margin: 0%;
+    font-size: 16px;
+    border: none;
+    height: 5vh; /* Set height as needed */
+    margin-left: 5%;
+    width: 80%;
+    border-radius:15px;
+}
+
+  
+  .textArea button {
+    border: none;
+    background-color: #c13f5f;
+    height: 5vh;
+    width: 20%;
+    margin-right: 5%;
+    border-radius:10px;
+    color: white;
+  }
+
+
+
+  .chat-container {
+    padding-bottom: 100px; /* Adjust based on the height of .textArea */
+    height: calc(100vh - 100px); /* Adjust 100px to the actual height of your .textArea */
+    overflow-y: auto; /* Enable scrolling */
+    background-color: #e2b5c0;
+}
+
+@media (max-width: 600px) {
+  .chat-container {
+      height: calc(100vh - 120px); /* Increase space for smaller devices */
+  }
+
+  .textArea {
+      height: 12%; /* Increase height for better touch targets */
+  }
+}
+
+
+.ai-profile-icon {
+  width: 30px; /* Adjust size as needed */
+  height: 30px; /* Adjust size as needed */
+  border-radius: 50%; /* Makes the image circular */
+  margin-right: 10px; /* Space between the image and the message */
+  align-self: center; /* Center align the icon with the text */
+}
+
+.respondBG {
+  background-color: white; /* White background for AI messages */
+  max-width: 300px;
+  border-radius: 30px 30px 30px 0;
+  margin-top: 5%;
+  margin-left: 2%; /* Aligns the bubble to the left */
+  padding: 10px;
+  color: black; /* Text color for readability */
+}
+
+
+.nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensures it stays on top of other content */
+  background-color: #fff; /* Assuming you want a solid background */
+  border-bottom: 1px solid #ccc; /* Optional, adds a subtle border line */
+}
+
+.chat-container {
+  padding-top: 60px; /* Adjust this value based on the actual height of your nav bar */
+  height: calc(100vh - 60px); 
+  overflow-y: auto;
+  /* Adjust to avoid overlapping with the text area */
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+
+
+
+
