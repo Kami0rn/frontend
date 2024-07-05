@@ -24,9 +24,10 @@ function Chat() {
     if (chatContainer) {
       chatContainer.scrollTop = chatContainer.scrollHeight;
     }
-    console.log(chatAvailable)
-    console.log(aiResponse)
-  }, [conversationHistory]);
+    console.log(chatAvailable);
+    console.log(aiResponse);
+  }, [conversationHistory, chatAvailable, aiResponse]);  // Add chatAvailable and aiResponse here
+  
 
   useEffect(() => {
     const initializeChatStatus = async () => {
