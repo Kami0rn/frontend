@@ -1,5 +1,5 @@
 // service/http/Chat.ts
-const serverAddress = 'http://127.0.0.1:5000';
+const serverAddress = 'https://mee.chatbot.api.thetigerteamacademy.net';
 
 export interface ChatFormData {
   user_input: string;
