@@ -25,18 +25,15 @@ function Chat() {
       chatContainer.scrollTop = chatContainer.scrollHeight;
     }
     console.log(chatAvailable);
-    console.log(aiResponse);
-  }, [conversationHistory, chatAvailable, aiResponse]);  // Add chatAvailable and aiResponse here
-  
-
-  useEffect(() => {
     const initializeChatStatus = async () => {
       const isActive = await FetchChatStatus();
       setChatAvailable(isActive);
     };
-
     initializeChatStatus();
-  }, []);
+    console.log(aiResponse);
+  }, [conversationHistory, chatAvailable, aiResponse]);  // Add chatAvailable and aiResponse here
+  
+
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
