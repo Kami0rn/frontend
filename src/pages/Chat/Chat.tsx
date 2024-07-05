@@ -14,9 +14,8 @@ interface ChatFormData {
 
 function Chat() {
   const [conversation, setConversation] = useState("");
-  const [aiResponse, setAiResponse] = useState("");
+
   const [conversationHistory, setConversationHistory] = useState<string[]>([]);
-  const [chatAvailable, setChatAvailable] = useState(true);
   const [loading, setLoading] = useState(false); // State to manage loading
 
   useEffect(() => {
