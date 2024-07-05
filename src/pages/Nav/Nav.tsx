@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import "./Nav.css";
 
 export default function Nav() {
+  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -34,6 +35,7 @@ export default function Nav() {
 
   const handleFeedbackClick = () => {
     handleClose(); // Close the menu
+    console.log(setAuth)
     window.open('https://docs.google.com/forms/d/e/1FAIpQLScsTzm2fjOKQmw53C9GEPF6Yb2uLrhjUgu3TtWco2Ypp4PwwQ/viewform?usp=sf_link', '_blank');
   };
 
