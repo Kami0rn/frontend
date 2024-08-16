@@ -3,8 +3,7 @@ import Nav from "../Nav/Nav";
 import "./Chat.css";
 import { CreateChat } from "../../service/http/Chat";
 import width_194 from "./width_194.png";
-// import Swal from 'sweetalert2';
-import { Rings } from 'react-loader-spinner'; // Import the spinner
+import Swal from 'sweetalert2';
 
 interface ChatFormData {
   user_input: string;
@@ -16,19 +15,28 @@ function Chat() {
   const [aiResponse, setAiResponse] = useState("");
   const [conversationHistory, setConversationHistory] = useState<string[]>([]);
   const [loading, setLoading] = useState(false); // State to manage loading
+  const [typing, setTyping] = useState(false); // State to manage typing indicator
 
   useEffect(() => {
     const chatContainer = document.querySelector(".chat-container");
     if (chatContainer) {
       chatContainer.scrollTop = chatContainer.scrollHeight;
     }
-    console.log(aiResponse);
-  }, [conversationHistory, aiResponse]);  // Add aiResponse here
+  }, [conversationHistory, aiResponse]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setLoading(true); // Show loading spinner
+    setLoading(true);
+
+    const updatedHistory = [
+      ...conversationHistory,
+      `${conversation}`
+    ];
+    setConversationHistory(updatedHistory);
+    setConversation("");
+
+    setTyping(true);
 
     const formData: ChatFormData = {
       user_input: conversation,
@@ -36,20 +44,40 @@ function Chat() {
     };
 
     const response = await CreateChat(formData);
+
     if (response && response.ai_response) {
-      const updatedHistory = [
-        ...conversationHistory,
-        ` ${conversation}`,
-        ` ${response.ai_response}`,
-      ];
-      setConversationHistory(updatedHistory);
-      setAiResponse(response.ai_response);
-      setConversation("");  // Reset input field
+      simulateTypingEffect(response.ai_response);
     } else {
       console.log("Failed to get AI response");
+      setTyping(false);
+      setLoading(false);
     }
+  };
 
-    setLoading(false); // Hide loading spinner
+  const simulateTypingEffect = (fullResponse: string) => {
+    let currentText = "";
+    const typingInterval = 30; // milliseconds between each character
+    const chars = fullResponse.split("");
+
+    const typeChar = (index: number) => {
+      if (index < chars.length) {
+        currentText += chars[index];
+        setAiResponse(currentText);
+
+        if (index === chars.length - 1) {
+          setConversationHistory(prevHistory => [
+            ...prevHistory,
+            `${currentText}`,
+          ]);
+          setTyping(false);
+          setLoading(false);
+        }
+
+        setTimeout(() => typeChar(index + 1), typingInterval);
+      }
+    };
+
+    typeChar(0);
   };
 
   return (
@@ -74,9 +102,13 @@ function Chat() {
             )}
           </div>
         ))}
-        {loading && (
-          <div className="loading-spinner">
-            <Rings color="#00BFFF" height={80} width={80} />
+        {typing && (
+          <div className="message-flex respondBG">
+            <div className='flex-in'>
+              <img src={width_194} alt="AI" className="ai-profile-icon" />
+              <h4>MEE</h4>
+            </div>
+            <div>{aiResponse}</div> {/* AI response typing effect here */}
           </div>
         )}
       </div>
