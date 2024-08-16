@@ -3,7 +3,7 @@ import Nav from "../Nav/Nav";
 import "./Chat.css";
 import { CreateChat } from "../../service/http/Chat";
 import width_194 from "./width_194.png";
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 import { Rings } from 'react-loader-spinner'; // Import the spinner
 
 interface ChatFormData {
