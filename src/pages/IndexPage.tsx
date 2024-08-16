@@ -16,7 +16,7 @@ function Index() {
   return (
     <div className={`container ${fadeOut ? "fade-out" : ""}`}>
       <img src={width_194} alt="" />
-      <h1>Talk with "MEE"</h1>
+      <h1>Talk with "BREATHE"</h1>
       <h3>ver : 0.1</h3>
       <button onClick={handleNavigate}>Let's talk</button>
       <div className="bottom">

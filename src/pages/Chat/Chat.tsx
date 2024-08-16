@@ -84,7 +84,7 @@ function Chat() {
               <div className="message-flex">
                 <div className='flex-in'>
                   <img src={width_194} alt="AI" className="ai-profile-icon" />
-                  <h4>MEE</h4>
+                  <h4>BREATHE</h4>
                 </div>
                 <div>{msg}</div>
               </div>
@@ -100,7 +100,7 @@ function Chat() {
           <div className="message-flex respondBG">
             <div className='flex-in'>
               <img src={width_194} alt="AI" className="ai-profile-icon" />
-              <h4>MEE</h4>
+              <h4>BREATHE</h4>
             </div>
             <div>{aiResponse}</div> {/* AI response typing effect here */}
           </div>

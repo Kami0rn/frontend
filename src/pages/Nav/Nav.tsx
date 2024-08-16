@@ -57,7 +57,7 @@ export default function Nav() {
             sx={{ flexGrow: 1, textAlign: "center", color: "black", fontFamily: 'Schoolbell, cursive' }}
           >
             Talk with 
-            <div>"MEE"</div>
+            <div>"BREATHE"</div>
           </Typography>
           {auth && (
             <div>
