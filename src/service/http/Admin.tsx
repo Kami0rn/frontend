@@ -1,4 +1,5 @@
-const serverAddress = 'http://127.0.0.1:5000';
+const serverAddress = 'https://0f06-49-48-93-75.ngrok-free.app';
+// const serverAddress = 'http://127.0.0.1:5000';
 
 export interface AdminToggle {
     action: string;
@@ -25,18 +26,28 @@ export const AdminTog = async (action: AdminToggle) => {
   }
 };
 
-export const FetchChatStatus = async (): Promise<boolean> => {
+export const FetchChatStatus = async () => {
   try {
-    const response = await fetch(`${serverAddress}/status`, {
-      method: 'GET'
-    });
-    if (!response.ok) {
-      throw new Error('Failed to fetch chat status');
-    }
-    const data = await response.json();
-    return data.chat_enabled;  // Assuming the server returns an object with { chat_enabled: boolean }
+      const response = await fetch(`${serverAddress}/status`, {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      });
+
+      if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+          const data = await response.json();
+          return data;
+      } else {
+          throw new Error("Response was not JSON");
+      }
   } catch (error) {
-    console.error('Error fetching chat status:', error);
-    return false;  // Return a default value in case of failure
+      console.error("Error fetching chat status:", error);
+      return null;
   }
 };

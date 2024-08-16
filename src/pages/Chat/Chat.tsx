@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Nav from "../Nav/Nav";
 import "./Chat.css";
 import { CreateChat } from "../../service/http/Chat";
-import { FetchChatStatus } from "../../service/http/Admin";
 import width_194 from "./width_194.png";
 import Swal from 'sweetalert2';
 import { Rings } from 'react-loader-spinner'; // Import the spinner
@@ -16,7 +15,6 @@ function Chat() {
   const [conversation, setConversation] = useState("");
   const [aiResponse, setAiResponse] = useState("");
   const [conversationHistory, setConversationHistory] = useState<string[]>([]);
-  const [chatAvailable, setChatAvailable] = useState(true);
   const [loading, setLoading] = useState(false); // State to manage loading
 
   useEffect(() => {
@@ -24,33 +22,11 @@ function Chat() {
     if (chatContainer) {
       chatContainer.scrollTop = chatContainer.scrollHeight;
     }
-    console.log(chatAvailable);
-    const initializeChatStatus = async () => {
-      const isActive = await FetchChatStatus();
-      setChatAvailable(isActive);
-    };
-    initializeChatStatus();
     console.log(aiResponse);
-  }, [conversationHistory, chatAvailable, aiResponse]);  // Add chatAvailable and aiResponse here
-  
-
+  }, [conversationHistory, aiResponse]);  // Add aiResponse here
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    // Check chat availability before sending messages
-    const chatIsActive = await FetchChatStatus();
-    if (!chatIsActive) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Admin has currently deactivated the chat. Please try again later. LineID : @pypuni',
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'Ok'
-      });
-      setChatAvailable(false);
-      return;  // Exit the function early if chat is not available
-    }
 
     setLoading(true); // Show loading spinner
 
@@ -110,7 +86,7 @@ function Chat() {
             <input
               type="text"
               value={conversation}
-              placeholder="Say some thing:"
+              placeholder="Say something:"
               onChange={(e) => setConversation(e.target.value)}
             />
           </label>
