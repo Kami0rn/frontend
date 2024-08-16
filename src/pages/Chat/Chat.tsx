@@ -3,7 +3,6 @@ import Nav from "../Nav/Nav";
 import "./Chat.css";
 import { CreateChat } from "../../service/http/Chat";
 import width_194 from "./width_194.png";
-import Swal from 'sweetalert2';
 
 interface ChatFormData {
   user_input: string;
@@ -14,7 +13,6 @@ function Chat() {
   const [conversation, setConversation] = useState("");
   const [aiResponse, setAiResponse] = useState("");
   const [conversationHistory, setConversationHistory] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false); // State to manage loading
   const [typing, setTyping] = useState(false); // State to manage typing indicator
 
   useEffect(() => {
@@ -26,8 +24,6 @@ function Chat() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    setLoading(true);
 
     const updatedHistory = [
       ...conversationHistory,
@@ -50,7 +46,6 @@ function Chat() {
     } else {
       console.log("Failed to get AI response");
       setTyping(false);
-      setLoading(false);
     }
   };
 
@@ -70,7 +65,6 @@ function Chat() {
             `${currentText}`,
           ]);
           setTyping(false);
-          setLoading(false);
         }
 
         setTimeout(() => typeChar(index + 1), typingInterval);
